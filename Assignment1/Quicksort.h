@@ -14,8 +14,7 @@ int Partition(int *A, int low, int high)
 
 	while (index < pivot)
 	{
-		if (A[index] < A[pivot])
-		{
+		if (A[index] < A[pivot]) {
 			index++;
 		}
 		else
@@ -34,7 +33,6 @@ void QuickSort(int *A, int low, int high)
 	if (low < high)
 	{
 		int part = Partition(A, low, high);
-
 		QuickSort(A, low, part - 1);
 		QuickSort(A, part + 1, high);
 	}

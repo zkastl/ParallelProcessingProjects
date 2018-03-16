@@ -1,30 +1,39 @@
 #pragma warning(disable: 4996)
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "Quicksort.h"
 
-int main()
+#define NUM_RANDS 20
+
+void PrintArray(int* A);
+
+int main(int argc, char *argv[])
 {
-	int list[20] = { 5, 6, 111, 456, 20,
-					23, 3, 0, 4, 8,
-					10, 11, 1, 6, 12,
-					26, 40, 5, 18, 14 };
+	/* Initialize values */
+	srand(time(NULL));
 	int idx = 0;
+	int list[NUM_RANDS] = { 0 };
+
+	for (idx = 0; idx < NUM_RANDS; idx++) {
+		list[idx] = rand() % 500;
+	}
 
 	printf("Original list: ");
-	for (idx = 0; idx < 20; idx++)
-	{
-		printf("%d ", list[idx]);
-	}
-	printf("\n");
-
-	QuickSort(list, 0, 19);
+	PrintArray(list);
+	QuickSort(list, 0, NUM_RANDS-1);
 	printf("Sorted List: ");
-	for (idx = 0; idx < 20; idx++)
-	{
-		printf("%d ", list[idx]);
-	}
-	printf("\n");
+	PrintArray(list);
 
 	return 0;
+}
+
+void PrintArray(int *A)
+{
+	int i;
+	printf("{ ");
+	for (i = 0; i < NUM_RANDS; i++) {
+		printf("%d ", A[i]);
+	}
+	printf("}\n");
 }
