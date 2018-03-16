@@ -5,7 +5,7 @@
 #include <time.h>
 #include "Quicksort.h"
 
-#define NUM_RANDS 100000
+#define NUM_RANDS 1000000
 
 void PrintArray(int* A);
 
@@ -14,18 +14,23 @@ int main()
 	/* Initialize values */
 	srand(time(NULL));
 	int idx = 0;
-	int list[NUM_RANDS] = { 0 };
+	int *list = (int*)malloc(NUM_RANDS * sizeof(int));
 
 	for (idx = 0; idx < NUM_RANDS; idx++) {
 		list[idx] = rand() % 500;
 	}
 
 	printf("Original list: ");
-	PrintArray(list);
-	QuickSort(list, 0, NUM_RANDS-1);
-	printf("Sorted List: ");
-	PrintArray(list);
+	/*PrintArray(list);*/
 
+	time_t startTime = time(NULL);
+	QuickSort(list, 0, NUM_RANDS-1);
+	printf("%d seconds ",(time(NULL) - startTime));
+	
+	printf("Sorted List: ");
+	/*PrintArray(list);*/
+
+	free(list);
 	return(0);
 }
 
