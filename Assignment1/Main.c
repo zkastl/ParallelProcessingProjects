@@ -2,13 +2,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "Quicksort.h"
 
-#define NUM_RANDS 20
+#define NUM_RANDS 100000
 
 void PrintArray(int* A);
 
-int main(int argc, char *argv[])
+int main()
 {
 	/* Initialize values */
 	srand(time(NULL));
@@ -25,7 +26,7 @@ int main(int argc, char *argv[])
 	printf("Sorted List: ");
 	PrintArray(list);
 
-	return 0;
+	return(0);
 }
 
 void PrintArray(int *A)
