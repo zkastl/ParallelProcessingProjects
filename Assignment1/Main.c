@@ -179,6 +179,10 @@ void HelloParallel(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
+	if (argc == 1) {
+		printf("Unable to run program, no arguments passed in.");
+		return 0;
+	}
 	HelloParallel(argc, argv);
 	return(0);
 }
