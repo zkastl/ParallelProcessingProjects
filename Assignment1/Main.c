@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <omp.h>
 
 typedef enum { false, true } BOOL;
 #define NUM_RANDS 10000000
@@ -113,11 +114,11 @@ unsigned long long* FibbonacciSequence(int num_fibs)
 	fibs[0] = 1;
 	fibs[1] = 1;
 
-	printf("First %d Fibbonacci numbers: %d %d ", num_fibs, fibs[0], fibs[1]);
+	printf("First %d Fibbonacci numbers: %llu %llu ", num_fibs, fibs[0], fibs[1]);
 	for (int i = 2; i < num_fibs; i++)
 	{
 		fibs[i] = fibs[i - 1] + fibs[i - 2];
-		printf("%d ", fibs[i]);
+		printf("%llu ", fibs[i]);
 	}
 	printf("\n");
 
@@ -159,10 +160,25 @@ void FibbonacciAssignments()
 	FibbonacciSequence(num_fibs);
 }
 
-int main()
+void Hello(void)
 {
-	SortingAssignments();
-	FibbonacciAssignments();
+	int my_rank = omp_get_thread_num();
+	int thread_count = omp_get_num_threads();
 
+	printf("Hello from thread %d of %d!\n", my_rank, thread_count);
+}
+
+void HelloParallel(int argc, char* argv[])
+{
+	int thread_count = strtol(argv[1], NULL, 10);
+	#pragma omp parallel num_threads(thread_count)
+	Hello();
+
+	return;
+}
+
+int main(int argc, char* argv[])
+{
+	HelloParallel(argc, argv);
 	return(0);
 }
