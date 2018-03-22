@@ -8,7 +8,7 @@
 #include <omp.h>
 
 typedef enum { false, true } BOOL;
-#define NUM_RANDS 10000000
+#define NUM_RANDS 100000000
 
 void Swap(int *a, int *b)
 {
@@ -130,19 +130,19 @@ unsigned long long* FibbonacciSequence(int num_fibs)
 void SortingAssignments()
 {
 	int* list = RandomList();
-	int* copy = CopyList(list);
+	/*int* copy = CopyList(list);*/
 	
 	printf("Original list: ");
-	/*PrintArray(list);	*/
+	/*PrintArray(list);*/
 	time_t startTime = time(NULL);
 	Quicksort(list, 0, NUM_RANDS - 1);
 	printf("List sorted in %d seconds \n", (int)(time(NULL) - startTime));
 	printf("Sorted List: ");
-	/*PrintArray(list);	*/
+	PrintArray(list);
 	printf("\n");
 
-	printf("Original list copy: ");
-	/*PrintArray(list);	*/
+	/*printf("Original list copy: ");
+	/*PrintArray(list);	
 	startTime = time(NULL);
 	BubbleSort(copy, NUM_RANDS);
 	printf("List sorted in %d seconds \n", (int)(time(NULL) - startTime));
@@ -151,7 +151,7 @@ void SortingAssignments()
 	printf("\n");
 
 	free(list);
-	free(copy);
+	/*free(copy);*/
 }
 
 void FibbonacciAssignments()
@@ -204,7 +204,6 @@ int main(int argc, char* argv[])
 		return 0;
 	}
 	HelloParallel(argc, argv);*/
-
-	Pi(100000);
+	SortingAssignments();
 	return(0);
 }
