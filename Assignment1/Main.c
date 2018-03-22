@@ -2,6 +2,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+#include <string.h>
 #include <time.h>
 #include <omp.h>
 
@@ -177,12 +179,32 @@ void HelloParallel(int argc, char* argv[])
 	return;
 }
 
+long double Pi(unsigned long long num_points) 
+{
+	srand((unsigned int)time(NULL));
+	int count = 0;
+	int i, x, y;
+	long double z, pi;
+	for (i = 0; i < num_points; i++) {
+		x = (double)rand()/RAND_MAX;
+		y = (double)rand()/RAND_MAX;
+		z = x * x + y * y;
+		if (z <= 1) count++;
+	}
+	pi = (long double)count / num_points * 4;
+	printf("# of trials = %d, estimate pi to be %g \n", num_points, pi);
+
+	return pi;
+}
+
 int main(int argc, char* argv[])
 {
-	if (argc == 1) {
+	/*if (argc == 1) {
 		printf("Unable to run program, no arguments passed in.");
 		return 0;
 	}
-	HelloParallel(argc, argv);
+	HelloParallel(argc, argv);*/
+
+	Pi(100000);
 	return(0);
 }
