@@ -8,7 +8,7 @@
 #include <omp.h>
 
 typedef enum { false, true } BOOL;
-#define NUM_RANDS 100000000
+#define NUM_RANDS 1000
 
 void Swap(int *a, int *b)
 {
@@ -127,13 +127,13 @@ unsigned long long* FibbonacciSequence(int num_fibs)
 	return fibs;
 }
 
-void SortingAssignments()
+void SortingARandomList()
 {
 	int* list = RandomList();
-	/*int* copy = CopyList(list);*/
+	int* copy = CopyList(list);
 	
 	printf("Original list: ");
-	/*PrintArray(list);*/
+	PrintArray(list);
 	time_t startTime = time(NULL);
 	Quicksort(list, 0, NUM_RANDS - 1);
 	printf("List sorted in %d seconds \n", (int)(time(NULL) - startTime));
@@ -141,13 +141,13 @@ void SortingAssignments()
 	PrintArray(list);
 	printf("\n");
 
-	/*printf("Original list copy: ");
-	/*PrintArray(list);	
+	printf("Original list copy: ");
+	PrintArray(list);	
 	startTime = time(NULL);
 	BubbleSort(copy, NUM_RANDS);
 	printf("List sorted in %d seconds \n", (int)(time(NULL) - startTime));
 	printf("Sorted List: ");
-	/*PrintArray(list);	*/
+	PrintArray(list);	
 	printf("\n");
 
 	free(list);
@@ -199,11 +199,11 @@ long double Pi(unsigned long long num_points)
 
 int main(int argc, char* argv[])
 {
-	/*if (argc == 1) {
+	if (argc == 1) {
 		printf("Unable to run program, no arguments passed in.");
 		return 0;
 	}
-	HelloParallel(argc, argv);*/
-	SortingAssignments();
+	HelloParallel(argc, argv);
+	SortingARandomList();
 	return(0);
 }
