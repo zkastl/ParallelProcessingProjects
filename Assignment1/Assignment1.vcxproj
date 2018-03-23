@@ -121,10 +121,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArrayUtils.c" />
+    <ClCompile Include="BubbleSort.c" />
     <ClCompile Include="Main.c" />
+    <ClCompile Include="Quicksort.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="midterm.tex" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ArrayUtils.h" />
+    <ClInclude Include="BubbleSort.h" />
+    <ClInclude Include="Defs.h" />
+    <ClInclude Include="Quicksort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
