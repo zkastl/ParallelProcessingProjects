@@ -1,29 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "Defs.h"
 
 #include "ArrayUtils.h"
-
-void Swap(int *a, int *b)
-{
-	int c = *a;
-	*a = *b;
-	*b = c;
-}
-
-int* RandomList()
-{
-	/* Initialize values */
-	srand((unsigned int)time(NULL));
-	int *list = (int*)malloc(NUM_RANDS * sizeof(int));
-
-	for (int idx = 0; idx < NUM_RANDS; idx++) {
-		list[idx] = rand() % 500;
-	}
-
-	return list;
-}
+#include "Defs.h"
 
 int* CopyList(int* list)
 {
@@ -42,4 +22,24 @@ void PrintArray(int *A)
 		printf("%d ", A[i]);
 	}
 	printf("}\n");
+}
+
+int* RandomList()
+{
+	/* Initialize values */
+	srand((unsigned int)time(NULL));
+	int *list = (int*)malloc(NUM_RANDS * sizeof(int));
+
+	for (int idx = 0; idx < NUM_RANDS; idx++) {
+		list[idx] = rand() % 500;
+	}
+
+	return list;
+}
+
+void Swap(int *a, int *b)
+{
+	int c = *a;
+	*a = *b;
+	*b = c;
 }

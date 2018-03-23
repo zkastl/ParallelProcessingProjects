@@ -56,14 +56,6 @@ void SortingARandomList()
 	free(copy);
 }
 
-void FibbonacciAssignments()
-{
-	int num_fibs;
-	printf("\nEnter the number of fibbonacci numbers to generate:\n");
-	scanf("%d", &num_fibs);
-	FibbonacciSequence(num_fibs);
-}
-
 void Hello()
 {
 	int my_rank = omp_get_thread_num();
