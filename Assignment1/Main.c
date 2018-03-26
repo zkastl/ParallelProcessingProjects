@@ -1,18 +1,15 @@
 #pragma warning(disable: 4996)
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <string.h>
-#include <time.h>
 #ifdef _OPENMP
 	#include <omp.h>
 #endif
+#include <stdio.h>	
+#include <stdlib.h>
 
 #include "ArrayUtils.h"
 #include "BubbleSort.h"
-#include "Quicksort.h"
 #include "Defs.h"
+#include "Quicksort.h"
 
 double AreaTrapezoidal(int left_bound, int right_bound, int iterations, double(*func_ptr)(double))
 {
@@ -163,6 +160,6 @@ int main(int argc, char* argv[])
 	if (argc > 1 && argv[1] == "--h")
 		printf("Example: ./Assignment1.exe <num_threads>\n");
 
-	trap_parallel_driver(argc, argv);
+	/*trap_parallel_driver(argc, argv);*/
 	return(0);
 }

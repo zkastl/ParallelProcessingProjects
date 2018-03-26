@@ -1,4 +1,5 @@
-#pragma once
+#include <stdio.h>
+
 int* CopyList(int* list);
 void PrintArray(int *A);
 int* RandomList();
