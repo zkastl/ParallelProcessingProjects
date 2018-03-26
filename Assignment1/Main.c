@@ -5,12 +5,31 @@
 #include <math.h>
 #include <string.h>
 #include <time.h>
-#include <omp.h>
+#ifdef _OPENMP
+	#include <omp.h>
+#endif
 
 #include "ArrayUtils.h"
 #include "BubbleSort.h"
 #include "Quicksort.h"
 #include "Defs.h"
+
+double AreaTrapezoidal(int left_bound, int right_bound, int iterations, double(*func_ptr)(double))
+{
+	/* Function is assumed to be calculaton function that takes in a double
+		and returns a double back. */
+	int i;
+	double x_i;
+	double h = (right_bound - left_bound) / iterations;
+	double approx = (func_ptr(left_bound) + func_ptr(right_bound)) / 2.0;
+	for (i = 0; i < iterations; i++) {
+		x_i = left_bound + i * h;
+		approx += func_ptr(x_i);
+	}
+	approx = h * approx;
+
+	return approx;
+}
 
 unsigned long long* FibbonacciSequence(int num_fibs)
 {
@@ -58,15 +77,23 @@ void SortingARandomList()
 
 void Hello()
 {
-	int my_rank = omp_get_thread_num();
-	int thread_count = omp_get_num_threads();
+	int my_rank, thread_count;
+#   ifdef _OPENMP
+	my_rank = omp_get_thread_num();
+	thread_count = omp_get_num_threads();
+#	else
+	my_rank = 0;
+	thread_count = 1;
+#	endif
 
 	printf("Hello from thread %d of %d!\n", my_rank, thread_count);
 }
 
 void HelloParallel(int argc, char* argv[])
 {
-	int thread_count = strtol(argv[1], NULL, 10);
+	int thread_count = 1;
+	if (argc > 1 && (int)argv[1] > 1)
+		thread_count = strtol(argv[1], NULL, 10);
 	#pragma omp parallel num_threads(thread_count)
 	Hello();
 
@@ -93,10 +120,9 @@ long double Pi(unsigned long long num_points)
 
 int main(int argc, char* argv[])
 {
-	if (argc == 1) {
-		printf("Unable to run program, no arguments passed in.");
-		return 0;
-	}
+	if (argc > 1 && argv[1] == "--h")
+		printf("Example: ./Assignment1.exe <num_threads>\n");
+
 	HelloParallel(argc, argv);
 	SortingARandomList();
 	return(0);
