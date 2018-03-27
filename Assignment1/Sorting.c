@@ -79,3 +79,8 @@ void Quicksort(int *A, int low, int high)
 		Quicksort(A, part + 1, high);
 	}
 }
+
+int Quicksort_Parallel(int * A, int low, int high)
+{
+	return 0;
+}

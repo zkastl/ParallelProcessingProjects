@@ -11,6 +11,9 @@
 #include "MathAlgorithms.h"
 #include "Sorting.h"
 
+void Hello();
+void HelloParallel(int argc, char* argv[]);
+
 void Hello()
 {
 	int my_rank, thread_count;

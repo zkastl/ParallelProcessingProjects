@@ -4,3 +4,5 @@ void SortingARandomList();
 void BubbleSort(int* list, int start, int list_len); 
  int Quicksort_Partition(int *A, int low, int high);
 void Quicksort(int *A, int low, int high);
+
+int Quicksort_Parallel(int *A, int low, int high);
