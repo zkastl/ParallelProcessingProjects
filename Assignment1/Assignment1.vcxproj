@@ -122,18 +122,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ArrayUtils.c" />
-    <ClCompile Include="BubbleSort.c" />
     <ClCompile Include="Main.c" />
-    <ClCompile Include="Quicksort.c" />
+    <ClCompile Include="MathAlgorithms.c" />
+    <ClCompile Include="Sorting.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="midterm.tex" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayUtils.h" />
-    <ClInclude Include="BubbleSort.h" />
     <ClInclude Include="Defs.h" />
-    <ClInclude Include="Quicksort.h" />
+    <ClInclude Include="MathAlgorithms.h" />
+    <ClInclude Include="Sorting.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
