@@ -1,5 +1,5 @@
 #ifdef _OPENMP
-#include <omp.h>
+	#include <omp.h>
 #endif
 
 #include <stdio.h>	
@@ -46,42 +46,34 @@ void SortingARandomList()
 	free(list);
 
 	/*int* copy = CopyList(list);
-	Sort(BubbleSort, copy, NULL, NUM_RANDS, false);
+	Sort(Quicksort, copy, 0, NUM_RANDS - 1, false);
 	free(copy);*/
 }
 
 int Quicksort_Partition(int *A, int low, int high)
 {
-	int pivot = high;
-	int index = low;
-
-	while (index < pivot)
-	{
-		if (A[index] < A[pivot]) {
-			index++;
-		}
-		else
-		{
-			Swap(&A[index], &A[pivot - 1]);
-			Swap(&A[pivot - 1], &A[pivot]);
-			pivot--;
-		}
-	}
-
-	return pivot;
 }
 
 void Quicksort(int *A, int low, int high)
 {
 	if (low < high)
 	{
-		int part = Quicksort_Partition(A, low, high);
-		Quicksort(A, low, part - 1);
-		Quicksort(A, part + 1, high);
-	}
-}
+		int pivot = high;
+		int index = low;
 
-int Quicksort_Parallel(int * A, int low, int high)
-{
-	return 0;
+		while (index < pivot)
+		{
+			if (A[index] < A[pivot]) {
+				index++;
+			}
+			else {
+				Swap(&A[index], &A[pivot - 1]);
+				Swap(&A[pivot - 1], &A[pivot]);
+				pivot--;
+			}
+		}
+
+		Quicksort(A, low, pivot - 1);
+		Quicksort(A, pivot + 1, high);
+	}
 }

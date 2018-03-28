@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "ArrayUtils.h"
 #include "Defs.h"
@@ -15,12 +16,17 @@ int* CopyList(int* list)
 
 void PrintArray(int *A)
 {
+	BOOL outOfOrder = false;
+	int prev = -1;
 	int i;
 	printf("{ ");
 	for (i = 0; i < NUM_RANDS; i++) {
+		if (A[i] < prev)
+			outOfOrder = true;
+		prev = A[i];
 		printf("%d ", A[i]);
 	}
-	printf("}\n");
+	printf("}\n %c", (outOfOrder ? 'Y' : 'N'));
 }
 
 int* RandomList()

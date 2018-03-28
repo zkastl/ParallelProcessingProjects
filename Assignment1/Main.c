@@ -32,10 +32,12 @@ void Hello()
 void HelloParallel(int argc, char* argv[])
 {
 	int thread_count = 1;
-	if (argc > 1 && (int)argv[1] > 1)
+	if (argc > 1 && (int)*argv[1] - 48 > 1)
 		thread_count = strtol(argv[1], NULL, 10);
-	#pragma omp parallel num_threads(thread_count)
-	Hello();
+#pragma omp parallel num_threads(thread_count)
+	{
+		Hello();
+	}
 
 	return;
 }
@@ -44,6 +46,8 @@ int main(int argc, char* argv[])
 {
 	if (argc > 1 && argv[1] == "--h")
 		printf("Example: ./Assignment1.exe <num_threads>\n");
+	for(int i = 0; i < 100; i++)
+		SortingARandomList();
 
 	return(0);
 }
