@@ -127,13 +127,13 @@
     <ClCompile Include="Sorting.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="midterm.tex" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="ArrayUtils.h" />
     <ClInclude Include="Defs.h" />
     <ClInclude Include="MathAlgorithms.h" />
     <ClInclude Include="Sorting.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PPP_miderm.odt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
