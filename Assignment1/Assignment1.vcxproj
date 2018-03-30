@@ -87,7 +87,12 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <OpenMPSupport>true</OpenMPSupport>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Externals\freeglut\include\GL\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\Externals\freeglut\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -134,6 +139,7 @@
     <ClInclude Include="Sorting.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Midterm.docx" />
     <None Include="PPP_miderm.odt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

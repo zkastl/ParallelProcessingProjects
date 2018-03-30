@@ -44,5 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PPP_miderm.odt" />
+    <None Include="Midterm.docx" />
   </ItemGroup>
 </Project>

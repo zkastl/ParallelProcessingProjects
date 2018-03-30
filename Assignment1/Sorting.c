@@ -16,7 +16,8 @@ void BubbleSort(int* list, int start, int list_len)
 	while (swapped)
 	{
 		swapped = false;
-		for (int i = 0; i < list_len - 1; i++)
+		int i;
+		for (i = 0; i < list_len - 1; i++)
 		{
 			if (list[i] > list[i + 1])
 			{
@@ -52,6 +53,7 @@ void SortingARandomList()
 
 int Quicksort_Partition(int *A, int low, int high)
 {
+	return 0;
 }
 
 void Quicksort(int *A, int low, int high)

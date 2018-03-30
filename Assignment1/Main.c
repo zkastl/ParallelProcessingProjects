@@ -44,9 +44,10 @@ void HelloParallel(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
+	int i;
 	if (argc > 1 && argv[1] == "--h")
 		printf("Example: ./Assignment1.exe <num_threads>\n");
-	for(int i = 0; i < 100; i++)
+	for(i = 0; i < 100; i++)
 		SortingARandomList();
 
 	return(0);
