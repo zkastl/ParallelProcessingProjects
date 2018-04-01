@@ -11,37 +11,6 @@
 #include "MathAlgorithms.h"
 #include "Sorting.h"
 
-void Hello();
-void HelloParallel(int argc, char* argv[]);
-
-void Hello()
-{
-	int my_rank, thread_count;
-
-#   ifdef _OPENMP
-		my_rank = omp_get_thread_num();
-		thread_count = omp_get_num_threads();
-#	else
-		my_rank = 0;
-		thread_count = 1;
-#	endif
-
-	printf("Hello from thread %d of %d!\n", my_rank, thread_count);
-}
-
-void HelloParallel(int argc, char* argv[])
-{
-	int thread_count = 1;
-	if (argc > 1 && (int)*argv[1] - 48 > 1)
-		thread_count = strtol(argv[1], NULL, 10);
-#pragma omp parallel num_threads(thread_count)
-	{
-		Hello();
-	}
-
-	return;
-}
-
 int main(int argc, char* argv[])
 {
 	int i;
