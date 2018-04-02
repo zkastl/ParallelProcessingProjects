@@ -1,19 +1,23 @@
 #include <stdlib.h>
+#include <time.h>
 #include "Lab1.h"
 
-//void Pi_estimation_prototype(int number_of_tosses) {
-//	int number_in_circle = 0;
-//	for (int toss = 0; toss < number_of_tosses; toss++) {
-//		int x = 0; // random double between -1 and 1
-//		int y = 0; // random double between -1 and 1
-//		int distance_squared = x * x + y * y;
-//		if (distance_squared <= 1)
-//			number_in_circle++;
-//	}
-//	long double pi_estimate = 4 * number_in_circle / ((double)number_of_tosses);
-//
-//	return;
-//}
+long double Pi_Estimation(unsigned long long number_of_tosses) {
+	unsigned long long number_in_circle = 0;
+	for (unsigned long long toss = 0; toss < number_of_tosses; toss++) {
+		double random_value = 0.;
+		srand(time(NULL));
+		double x = (double)rand() / RAND_MAX * 2.0 - 1.0; // random double between -1 and 1
+		double y = (double)rand() / RAND_MAX * 2.0 - 1.0; // random double between -1 and 1
+		double distance_squared = x * x + y * y;
+		if (distance_squared <= 1)
+			number_in_circle++;
+	}
+	long double pi_estimate = 4. * (double) number_in_circle / (double) number_of_tosses;
+
+	printf("%lf", pi_estimate);
+	return pi_estimate;
+}
 
 //void count_sort_serial(int* A, int n) {
 //	int i, j, count;
@@ -35,6 +39,8 @@
 //}
 
 int main() {
+	
 	Lab1(100000000);
+	Pi_Estimation(18446744073709551615);
 	return 0;
 }
