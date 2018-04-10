@@ -21,6 +21,9 @@
     <ClCompile Include="Lab1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Lab2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lab1.h">

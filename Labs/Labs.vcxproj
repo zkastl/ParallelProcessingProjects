@@ -99,6 +99,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <OpenMPSupport>true</OpenMPSupport>
+      <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -117,6 +119,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Lab1.c" />
+    <ClCompile Include="Lab2.c" />
     <ClCompile Include="Main.c" />
   </ItemGroup>
   <ItemGroup>

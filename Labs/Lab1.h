@@ -1,5 +1,8 @@
 #pragma once
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <omp.h>
 
 struct Histogram {
 	int LessThanPoint1; 
@@ -18,7 +21,7 @@ struct Histogram {
 
 void InitializeHistogram();
 void PrintHistogram();
-void Lab1(int numRands);
+void Lab1(int numRands, int num_threads);
 float* RandomList();
 void SortArrayHistogramSerial(float* randVals, int size);
-void SortArrayHistogramParallel(float* randVals, int size);
+void SortArrayHistogramParallel(float* randVals, int size, int num_threads);

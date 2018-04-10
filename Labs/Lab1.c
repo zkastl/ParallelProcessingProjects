@@ -1,11 +1,7 @@
-#include <stdlib.h>
-#include <time.h>
-#include <omp.h>
-
 #include "Lab1.h"
 
 /* Driver Program for Lab 1 */
-void Lab1(int numRands)
+void Lab1(int numRands, int num_threads)
 {
 	// Create a random array of floats
 	float* randomValues = RandomList(numRands);
@@ -25,10 +21,10 @@ void Lab1(int numRands)
 	// Initialize the histogram to all zeroes
 	InitializeHistogram();
 
-	// Sort the numbers into the histogram using the serial method
+	// Sort the numbers into the histogram using the parallel method
 	// Time the amount it takes, and print the histogram when finished
 	start_time = omp_get_wtime();
-	SortArrayHistogramParallel(randomValues, numRands);
+	SortArrayHistogramParallel(randomValues, numRands, num_threads);
 	printf("Time Elapsed (Parallel) -- %lf\n", (omp_get_wtime() - start_time));
 	PrintHistogram();
 
@@ -71,7 +67,7 @@ void SortArrayHistogramSerial(float* randVals, int size)
 /* Function to sort the values for an array of floats into the histogram structure
 * This method is parallel -- only changes are pragma statements for omp
 */
-void SortArrayHistogramParallel(float* randVals, int size)
+void SortArrayHistogramParallel(float* randVals, int size, int num_threads)
 {
 	int i;
 #pragma omp parallel for num_threads(4)
