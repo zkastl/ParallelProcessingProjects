@@ -4,7 +4,8 @@ double Pi_Estimation(long long number_of_tosses) {
 	long long number_in_circle = 0; 
 	long long toss = 0;
 	for (toss = 0; toss < number_of_tosses; toss++) {
-		printf("Toss #%llu...\n", toss);
+		if (toss % 100000 == 0)
+			printf("Toss #%llu...\n", toss);
 		double random_value = 0.;
 		srand(time(NULL));
 		double x = (double)rand() / RAND_MAX * 2.0 - 1.0; // random double between -1 and 1
@@ -24,7 +25,8 @@ double Pi_Estimation_Parallel(long long number_of_tosses, int num_threads) {
 	long long toss = 0;
 #pragma omp parallel for num_threads(num_threads)
 	for (toss = 0; toss < number_of_tosses; toss++) {
-		//printf("Toss #%lld...\n", toss);
+		if(toss % 100000 == 0)
+			printf("Toss #%lld...\n", toss);
 		double random_value = 0.;
 		srand(time(NULL));
 		double x = (double)rand() / RAND_MAX * 2.0 - 1.0; // random double between -1 and 1
