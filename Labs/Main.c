@@ -24,7 +24,7 @@
 
 int main() {
 #ifndef NUM_TOSSES
-#define NUM_TOSSES 1000000000
+#define NUM_TOSSES 10000000000
 #endif // !NUM_TOSSES
 
 	Lab1(100000000, NUM_THREADS);
