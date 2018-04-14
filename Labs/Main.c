@@ -27,7 +27,7 @@ int main() {
 #define NUM_TOSSES 10000000000
 #endif // !NUM_TOSSES
 
-	Lab1(100000000, NUM_THREADS);
+	//Lab1(100000000, NUM_THREADS);
 	Pi_Estimation(NUM_TOSSES);
 	Pi_Estimation_Parallel(NUM_TOSSES, NUM_THREADS);
 	return 0;
