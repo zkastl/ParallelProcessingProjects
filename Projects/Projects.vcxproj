@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ArrayUtils.c" />
+    <ClCompile Include="Homework.h" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="MathAlgorithms.c" />
     <ClCompile Include="Sorting.c" />
