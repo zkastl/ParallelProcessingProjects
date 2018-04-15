@@ -6,3 +6,4 @@
 
 double Pi_Estimation(long long number_of_tosses);
 double Pi_Estimation_Parallel(long long number_of_tosses, int num_threads);
+void Lab2(int num_threads);

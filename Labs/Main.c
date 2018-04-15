@@ -25,6 +25,6 @@
 int main() {
 
 	Lab1(100000000, NUM_THREADS);
-	Lab2(1000000000, NUM_THREADS);
+	Lab2(NUM_THREADS);
 	return 0;
 }
