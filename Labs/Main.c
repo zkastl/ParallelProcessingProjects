@@ -23,12 +23,8 @@
 //}
 
 int main() {
-#ifndef NUM_TOSSES
-#define NUM_TOSSES 1000000000
-#endif // !NUM_TOSSES
 
 	Lab1(100000000, NUM_THREADS);
-	Pi_Estimation(NUM_TOSSES);
-	Pi_Estimation_Parallel(NUM_TOSSES, NUM_THREADS);
+	Lab2(1000000000, NUM_THREADS);
 	return 0;
 }
