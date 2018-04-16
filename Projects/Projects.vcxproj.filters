@@ -7,9 +7,6 @@
     <ClCompile Include="Main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MathAlgorithms.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Sorting.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -19,12 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayUtils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Defs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MathAlgorithms.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sorting.h">

@@ -132,13 +132,10 @@
     <ClCompile Include="ArrayUtils.c" />
     <ClCompile Include="Homework.h" />
     <ClCompile Include="Main.c" />
-    <ClCompile Include="MathAlgorithms.c" />
     <ClCompile Include="Sorting.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayUtils.h" />
-    <ClInclude Include="Defs.h" />
-    <ClInclude Include="MathAlgorithms.h" />
     <ClInclude Include="Sorting.h" />
   </ItemGroup>
   <ItemGroup>

@@ -28,5 +28,4 @@ void Lab2(int num_threads)
 	long long NUM_TOSSES = 1000000000;
 	Pi_Estimation_Parallel(NUM_TOSSES, 1);
 	Pi_Estimation_Parallel(NUM_TOSSES, num_threads);
-
 }

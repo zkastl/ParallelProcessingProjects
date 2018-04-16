@@ -3,7 +3,6 @@
 #include <time.h>
 
 #include "ArrayUtils.h"
-#include "Defs.h"
 
 int* CopyList(int* list)
 {
@@ -40,11 +39,4 @@ int* RandomList()
 	}
 
 	return list;
-}
-
-void Swap(int *a, int *b)
-{
-	int c = *a;
-	*a = *b;
-	*b = c;
 }

@@ -1,14 +1,6 @@
-#ifdef _OPENMP
-	#include <omp.h>
-#endif
-
-#include <stdio.h>	
-#include <stdlib.h>
-#include <time.h>
-
-#include "ArrayUtils.h"
-#include "Defs.h"
 #include "Sorting.h"
+
+BOOL forked = false;
 
 void BubbleSort(int* list, int start, int list_len)
 {
@@ -43,17 +35,11 @@ void Sort(void(*sort)(int*, int, int), int* list, int low, int high, BOOL print)
 void SortingARandomList()
 {
 	int* list = RandomList();
-	Sort(Quicksort, list, 0, NUM_RANDS - 1, false);
+	//int* copy = CopyList(list);
+	Sort(QSP_internal, list, 0, NUM_RANDS - 1, true);
+
 	free(list);
-
-	/*int* copy = CopyList(list);
-	Sort(Quicksort, copy, 0, NUM_RANDS - 1, false);
-	free(copy);*/
-}
-
-int Quicksort_Partition(int *A, int low, int high)
-{
-	return 0;
+	//free(copy);
 }
 
 void Quicksort(int *A, int low, int high)
@@ -65,17 +51,76 @@ void Quicksort(int *A, int low, int high)
 
 		while (index < pivot)
 		{
-			if (A[index] < A[pivot]) {
+			if (A[index] < A[pivot])
 				index++;
-			}
 			else {
 				Swap(&A[index], &A[pivot - 1]);
 				Swap(&A[pivot - 1], &A[pivot]);
 				pivot--;
 			}
 		}
-
 		Quicksort(A, low, pivot - 1);
 		Quicksort(A, pivot + 1, high);
 	}
+}
+
+void QuicksortParallel(int *A, int low, int high, int thread_count)
+{
+	int cutoff = 1000;
+	#pragma omp parallel num_threads(thread_count)
+	{
+		#pragma omp single nowait
+		{
+			QSP_internal(A, low, high, cutoff);
+		}
+	}
+}
+
+void QSP_internal(int *A, int low, int high, int cutoff)
+{
+	int i = low, j = high;
+	int tmp;
+	int pivot = A[(low + high) / 2];
+
+
+	{
+		/* PARTITION PART */
+		while (i <= j) {
+			while (A[i] < pivot)
+				i++;
+			while (A[j] > pivot)
+				j--;
+			if (i <= j) {
+				tmp = A[i];
+				A[i] = A[j];
+				A[j] = tmp;
+				i++;
+				j--;
+			}
+		}
+
+	}
+
+
+	if (((high - low)<cutoff)) {
+		if (low < j) { QSP_internal(A, low, j, cutoff); }
+		if (i < high) { QSP_internal(A, i, high, cutoff); }
+
+	}
+	else {
+		#pragma omp sections
+		{
+			#pragma omp section
+			QSP_internal(A, low, j, cutoff);
+			#pragma omp section
+			QSP_internal(A, i, high, cutoff);
+		}
+	}
+}
+
+void Swap(int *a, int *b)
+{
+	int c = *a;
+	*a = *b;
+	*b = c;
 }
