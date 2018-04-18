@@ -14,18 +14,13 @@ int PrintArray(int *A, int size, int print)
 	int outOfOrder = 0;
 	int prev = -1;
 	int i;
-	if (print > 0 )
-		printf("{ ");
+
 	for (i = 0; i < size; i++) {
 		if (A[i] < prev)
 			outOfOrder = 1;
 		prev = A[i];
-		if (print > 0)
-			printf("%d ", A[i]);
 	}
-	if (print > 0)
-		printf("}\n");
-	printf("%c", (outOfOrder ? 'Y' : 'N'));
+	//printf("%c", (outOfOrder ? 'Y' : 'N'));
 
 	return outOfOrder;
 }

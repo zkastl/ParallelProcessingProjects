@@ -1,61 +1,77 @@
-#pragma warning(disable: 4996)
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-
-#ifdef _OPENMP
 #include <omp.h>
-#endif
 
 #include "Homework.h"
 #include "ArrayUtils.h"
 #include "Sorting.h"
 
-#define NUM_RANDS 1000000
 #define NUM_THREADS 4
+#define MAX_LEN 262144000
 
-void Sorting()
+/* 
+Main Sorting driver method. 
+This will sort a randomly generated array of integers in the 
+range of 0-500 in increasing numerical order using two versions of quicksort. The
+first is a simple traditional quicksort, performed in serial. The second is a OpenMP
+modified version of quicksort that will run in parallel using the number of threads
+defined in the above macro. Quicksort selects the pivot that is the midpoint of the array
+in both serial and parallel. 
+*/
+void Sorting(int num_to_sort)
 {
-	double start_time, execution_time;
+	/* Declare variables */
+	double start_time, serial_execution_time, parallel_execution_time;
+	int parallel_faster = 0;
 
-	printf("Generating a random list of %d elements.....", NUM_RANDS);
-	int* list = RandomList(NUM_RANDS);
-	printf("DONE!\n");
+	/* Generate a list of random numbers to sort. */
+	int* list = RandomList(num_to_sort);
 
-	printf("Copying this list for later.....");
-	int* copy = CopyList(list, NUM_RANDS);
-	printf("DONE!\n");
+	/* Copy the list for comparison to the serial sort. */
+	int* copy = CopyList(list, num_to_sort);
 
-	printf("***Sorting your list with Serial Quicksort...");
+	/* Sort the array using a traditional Quicksort method. Calculate the sort time. */
 	start_time = omp_get_wtime();
-	Quicksort(list, 0, (NUM_RANDS - 1));
-	execution_time = omp_get_wtime() - start_time;
-	if (PrintArray)
-		printf("List sorted in %lf seconds!***\n", execution_time);
-	else
-		printf("List unsuccessfully sorted...\n");
+	Quicksort(list, 0, (num_to_sort - 1));
+	serial_execution_time = omp_get_wtime() - start_time;
 
-	printf("***Sorting your list with OpenMP Quicksort...");
+	/* Sort the copy of the array using the modified openmp quicksort; this should
+	 * be compatable with OpenMP >=2.0. Calcualte the sort time */
 	start_time = omp_get_wtime();
-	QuicksortParallel(copy, 0, (NUM_RANDS - 1), NUM_RANDS);
-	execution_time = omp_get_wtime() - start_time;
-	if (PrintArray)
-		printf("List sorted in %lf seconds!***\n", execution_time);
-	else
-		printf("List unsuccessfully sorted...\n");
+	QuicksortParallel(copy, 0, (num_to_sort - 1), NUM_THREADS);
+	parallel_execution_time = omp_get_wtime() - start_time;
+	if (!PrintArray(copy, num_to_sort, 0))
+		/* Report to standard output the number sorted, the times it takes*/
+		printf("%d, %lf, %lf\n", num_to_sort, serial_execution_time, parallel_execution_time);
 
-	printf("***Cleaning up memory...");
+	/* Clean up the heap. */
 	free(list);
 	free(copy);
-	printf("DONE***\n\n***COMPLETE!***");
 }
 
+/* Special driver function. This function will run the quicksort algorithm from 10^1 to
+ * 10^9 values. Each sorting will return whether or not the serial or the parallel version
+ * is faster in order to determine just when you should use parallel processing.
+ * This will be not 100% accurate, due to the random nature of the list and its effect
+ * on quicksort's performance. */
+void ProgressiveSorting() 
+{
+	printf("Running Quicksorts on random values.\n");
+	int list_size;
+	for(list_size = 100; list_size < MAX_LEN; list_size+=100) {
+		Sorting(list_size);
+	}
+}
+
+/* Main method. */
 int main(int argc, char* argv[])
 {
-	//HomeworkProblems6_8();
-	Sorting();
+	/* Any other assignments go here... */
+
+	/* Final Project */
+	ProgressiveSorting();
 
 	return 0;
 }

@@ -10,7 +10,7 @@ void Quicksort(int *A, int low, int high)
 {
 	if (low < high)
 	{
-		int pivot = high;
+		int pivot = (low + high) / 2;
 		int index = low;
 
 		while (index < pivot)
@@ -28,14 +28,23 @@ void Quicksort(int *A, int low, int high)
 	}
 }
 
-/* Need explaination here about how I took this code and modified it for my purposes*/
-/* https://github.com/eduardlopez/quicksort-parallel/blob/master/quicksort-omp.h */
+/* This method was inspired by:
+ *		https://github.com/eduardlopez/quicksort-parallel/blob/master/quicksort-omp.h
+ * Lopez's code is a slight modification of the serial quicksort method, shown in this file.
+ * This code utilizes OpenMP >= 3.0 to divide the separate recursive portions of quicksort
+ * into separate tasks. Since my version of C (MSVC) only supports OpenMP 2.0, a change was
+ * required.
+ * 
+ * In this version, a modification of the version located at the link. The tasks pragma
+ * was replaced with a sections pragma. It was a slight modification, but increases the
+ * compatability with different compilers. */
 void QuicksortParallel(int *A, int low, int high, int thread_count)
 {
 	int cutoff = 1000;
-#pragma omp parallel num_threads(thread_count)
+
+	#pragma omp parallel num_threads(thread_count)
 	{
-#pragma omp single nowait
+		#pragma omp single nowait
 		{
 			QSP_internal(A, low, high, cutoff);
 		}
@@ -44,8 +53,10 @@ void QuicksortParallel(int *A, int low, int high, int thread_count)
 
 void QSP_internal(int *A, int low, int high, int cutoff)
 {
-	int i = low, j = high;
+	int i = low;
+	int j = high;
 	int pivot = A[(low + high) / 2];
+
 	{
 		/* Partition*/
 		while (i <= j) {
@@ -68,14 +79,22 @@ void QSP_internal(int *A, int low, int high, int cutoff)
 		if (i < high)
 			QSP_internal(A, i, high, cutoff);
 	}
-	else {
-#pragma omp sections
+	else { 
+		#pragma omp sections
 		{
-#pragma omp section
+			#pragma omp section
 			QSP_internal(A, low, j, cutoff);
-#pragma omp section
+
+			#pragma omp section
 			QSP_internal(A, i, high, cutoff);
 		}
+
+		/* Unusable on OpenMP 2.0 */
+		/*#pragma omp task
+		QSP_internal(A, low, j, cutoff);
+
+		#pragma omp task
+		QSP_internal(A, i, high, cutoff);*/
 	}
 }
 
