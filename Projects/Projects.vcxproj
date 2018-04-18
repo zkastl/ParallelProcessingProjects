@@ -87,8 +87,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <OpenMPSupport>true</OpenMPSupport>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Externals\freeglut\include\GL\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OpenMPSupport>false</OpenMPSupport>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(ProjectDir)..\..\Externals\freeglut\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -129,10 +129,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ArrayUtils.c" />
     <ClCompile Include="Homework.h" />
     <ClCompile Include="Main.c" />
-    <ClCompile Include="Sorting.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayUtils.h" />
