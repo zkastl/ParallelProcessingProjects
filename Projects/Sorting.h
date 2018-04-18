@@ -1,11 +1,15 @@
 #pragma once
 
+/* Declarations */
 void Swap(int *a, int *b);
 void Quicksort(int *A, int low, int high);
-
 void QuicksortParallel(int *A, int low, int high, int num_threads);
 void QSP_internal(int *A, int low, int high, int cutoff);
 
+/* Implementations */
+
+/* Serial Quicksort method. Uses the array's midpoint as the starting
+ * pivot. */
 void Quicksort(int *A, int low, int high)
 {
 	if (low < high)
@@ -51,6 +55,7 @@ void QuicksortParallel(int *A, int low, int high, int thread_count)
 	}
 }
 
+/* Internal method to be used in the parallelization. */
 void QSP_internal(int *A, int low, int high, int cutoff)
 {
 	int i = low;
@@ -98,6 +103,7 @@ void QSP_internal(int *A, int low, int high, int cutoff)
 	}
 }
 
+/* Simple Swap method. */
 void Swap(int *a, int *b)
 {
 	int c = *a;
