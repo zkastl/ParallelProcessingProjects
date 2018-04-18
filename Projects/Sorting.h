@@ -78,28 +78,27 @@ void QSP_internal(int *A, int low, int high, int cutoff)
 
 	}
 
-	if (((high - low)<cutoff)) {
+	if (((high - low) < cutoff)) {
 		if (low < j)
 			QSP_internal(A, low, j, cutoff);
 		if (i < high)
 			QSP_internal(A, i, high, cutoff);
 	}
 	else { 
-		#pragma omp sections
+		/*#pragma omp sections
 		{
 			#pragma omp section
 			QSP_internal(A, low, j, cutoff);
 
 			#pragma omp section
 			QSP_internal(A, i, high, cutoff);
-		}
+		}*/
 
-		/* Unusable on OpenMP 2.0 */
-		/*#pragma omp task
+		#pragma omp task
 		QSP_internal(A, low, j, cutoff);
 
 		#pragma omp task
-		QSP_internal(A, i, high, cutoff);*/
+		QSP_internal(A, i, high, cutoff);
 	}
 }
 

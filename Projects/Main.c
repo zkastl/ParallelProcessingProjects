@@ -4,7 +4,6 @@
 #include <time.h>
 #include <omp.h>
 
-#include "Homework.h"
 #include "ArrayUtils.h"
 #include "Sorting.h"
 
@@ -58,9 +57,9 @@ void Sorting(int num_to_sort)
  * on quicksort's performance. */
 void ProgressiveSorting() 
 {
-	printf("Running Quicksorts on random values.\n");
+	printf("Array Size, Sort Time with Quicksort in Series, Sort Time with Quicksort in Parallel\n");
 	int list_size;
-	for(list_size = 100; list_size < MAX_LEN; list_size+=100) {
+	for(list_size = 10; list_size < 1000000; list_size+=10000) {
 		Sorting(list_size);
 	}
 }
@@ -68,10 +67,6 @@ void ProgressiveSorting()
 /* Main method. */
 int main(int argc, char* argv[])
 {
-	/* Any other assignments go here... */
-
-	/* Final Project */
 	ProgressiveSorting();
-
 	return 0;
 }
