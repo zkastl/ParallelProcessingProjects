@@ -59,7 +59,7 @@ void ProgressiveSorting()
 {
 	printf("Array Size, Sort Time with Quicksort in Series, Sort Time with Quicksort in Parallel\n");
 	int list_size;
-	for(list_size = 10; list_size < 1000000000; list_size+=10000) {
+	for(list_size = 10000; list_size < 10000000; list_size+=10000) {
 		Sorting(list_size);
 	}
 }
