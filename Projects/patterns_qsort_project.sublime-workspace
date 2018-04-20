@@ -1,0 +1,263 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/zkast/OneDrive/usajobs recovery key",
+			"settings":
+			{
+				"buffer_size": 30,
+				"encoding": "UTF-8",
+				"line_ending": "Windows",
+				"name": "QBRY-3CH2-88A1-4JBB"
+			}
+		},
+		{
+			"contents": "#include <stdio.h>\n#include <stdlib.h>\n#include <math.h>\n#include <time.h>\n#include <omp.h>\n\n#include \"ArrayUtils.h\"\n#include \"Sorting.h\"\n\n#define NUM_THREADS 4\n#define MAX_LEN 262144000\n\n/* \nMain Sorting driver method. \nThis will sort a randomly generated array of integers in the \nrange of 0-500 in increasing numerical order using two versions of quicksort. The\nfirst is a simple traditional quicksort, performed in serial. The second is a OpenMP\nmodified version of quicksort that will run in parallel using the number of threads\ndefined in the above macro. Quicksort selects the pivot that is the midpoint of the array\nin both serial and parallel. \n*/\nvoid Sorting(int num_to_sort)\n{\n\t/* Declare variables */\n\tdouble start_time, serial_execution_time, parallel_execution_time;\n\tint parallel_faster = 0;\n\n\t/* Generate a list of random numbers to sort. */\n\tint* list = RandomList(num_to_sort);\n\n\t/* Copy the list for comparison to the serial sort. */\n\tint* copy = CopyList(list, num_to_sort);\n\n\t/* Sort the array using a traditional Quicksort method. Calculate the sort time. */\n\tstart_time = omp_get_wtime();\n\tQuicksort(list, 0, (num_to_sort - 1));\n\tserial_execution_time = omp_get_wtime() - start_time;\n\n\t/* Sort the copy of the array using the modified openmp quicksort; this should\n\t * be compatable with OpenMP >=2.0. Calcualte the sort time */\n\tstart_time = omp_get_wtime();\n\tQuicksortParallel(copy, 0, (num_to_sort - 1), NUM_THREADS);\n\tparallel_execution_time = omp_get_wtime() - start_time;\n\tif (!PrintArray(copy, num_to_sort, 0))\n\t\t/* Report to standard output the number sorted, the times it takes*/\n\t\tprintf(\"%d, %lf, %lf\\n\", num_to_sort, serial_execution_time, parallel_execution_time);\n\n\t/* Clean up the heap. */\n\tfree(list);\n\tfree(copy);\n}\n\n/* Special driver function. This function will run the quicksort algorithm from 10^1 to\n * 10^9 values. Each sorting will return whether or not the serial or the parallel version\n * is faster in order to determine just when you should use parallel processing.\n * This will be not 100% accurate, due to the random nature of the list and its effect\n * on quicksort's performance. */\nvoid ProgressiveSorting() \n{\n\tprintf(\"Array Size, Sort Time with Quicksort in Series, Sort Time with Quicksort in Parallel\\n\");\n\tint list_size;\n\tfor(list_size = 1 list_size < 1000000000; list_size*=2) {\n\t\tSorting(list_size);\n\t}\n}\n\n/* Main method. */\nint main(int argc, char* argv[])\n{\n\tProgressiveSorting();\n\treturn 0;\n}\n",
+			"file": "Main.c",
+			"file_size": 2533,
+			"file_write_time": 131686804140084350,
+			"settings":
+			{
+				"buffer_size": 2460,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 137.0,
+		"last_filter": "remove",
+		"selected_items":
+		[
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: remove",
+				"Package Control: Remove Channel"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 444.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/zkast/source/repos/ParallelProgrammingPattonAssignments",
+		"/C/Users/zkast/source/repos/ParallelProgrammingPattonAssignments/Projects"
+	],
+	"file_history":
+	[
+		"/C/Users/zkast/OneDrive/pokedex_final.json",
+		"/C/Users/zkast/source/repos/ParallelProgrammingPattonAssignments/Projects/x64/Release/out.log",
+		"/C/Users/zkast/Desktop/output.log"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/zkast/OneDrive/usajobs recovery key",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 30,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								30,
+								30
+							]
+						],
+						"settings":
+						{
+							"auto_name": "QBRY-3CH2-88A1-4JBB",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Main.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2460,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2301,
+								2301
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 237.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "patterns_qsort_project.sublime-project",
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 228.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
