@@ -7,7 +7,7 @@
 #include "ArrayUtils.h"
 #include "Sorting.h"
 
-#define NUM_THREADS 4
+#define NUM_THREADS 8
 #define MAX_LEN 262144000
 
 /* 
@@ -17,7 +17,8 @@ range of 0-500 in increasing numerical order using two versions of quicksort. Th
 first is a simple traditional quicksort, performed in serial. The second is a OpenMP
 modified version of quicksort that will run in parallel using the number of threads
 defined in the above macro. Quicksort selects the pivot that is the midpoint of the array
-in both serial and parallel. 
+in both serial and parallel. The only difference in the programs is that one possess 
+OpenMP pragmas.
 */
 void Sorting(int num_to_sort)
 {
@@ -36,8 +37,7 @@ void Sorting(int num_to_sort)
 	Quicksort(list, 0, (num_to_sort - 1));
 	serial_execution_time = omp_get_wtime() - start_time;
 
-	/* Sort the copy of the array using the modified openmp quicksort; this should
-	 * be compatable with OpenMP >=2.0. Calcualte the sort time */
+	/* Sort the copy of the array using the modified openmp quicksort */
 	start_time = omp_get_wtime();
 	QuicksortParallel(copy, 0, (num_to_sort - 1), NUM_THREADS);
 	parallel_execution_time = omp_get_wtime() - start_time;
@@ -51,15 +51,12 @@ void Sorting(int num_to_sort)
 }
 
 /* Special driver function. This function will run the quicksort algorithm from 10^1 to
- * 10^9 values. Each sorting will return whether or not the serial or the parallel version
- * is faster in order to determine just when you should use parallel processing.
- * This will be not 100% accurate, due to the random nature of the list and its effect
- * on quicksort's performance. */
+ * 10^9 values.*/
 void ProgressiveSorting() 
 {
 	printf("Array Size, Sort Time with Quicksort in Series, Sort Time with Quicksort in Parallel\n");
 	int list_size;
-	for(list_size = 1; list_size < 1000000000; list_size*=2) {
+	for(list_size = 2; list_size <= MAX_LEN; list_size*=2) {
 		Sorting(list_size);
 	}
 }

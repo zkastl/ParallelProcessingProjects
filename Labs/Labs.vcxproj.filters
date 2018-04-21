@@ -18,18 +18,18 @@
     <ClCompile Include="Main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Lab1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Lab2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lab1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Lab2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lab3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ArrayUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
